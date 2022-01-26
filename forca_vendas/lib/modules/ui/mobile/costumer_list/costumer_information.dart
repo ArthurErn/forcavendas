@@ -60,7 +60,7 @@ class _CostumerInformationState extends State<CostumerInformation> {
   @override
   void initState() {
     GeneralQuery()
-        .query('clientes_financeiro', 'id_cliente', widget.id)
+        .query('clientes_financeiro', 'id_cliente', widget.id + " order by id desc")
         .then((value) {
       setState(() {
         financialList = value;
@@ -392,7 +392,8 @@ class _CostumerInformationState extends State<CostumerInformation> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(
+                        Container(
+                          margin: const EdgeInsets.only(top: 5),
                           height: MediaQuery.of(context).size.height * .45,
                           width: MediaQuery.of(context).size.width * .95,
                           child: ListView.builder(

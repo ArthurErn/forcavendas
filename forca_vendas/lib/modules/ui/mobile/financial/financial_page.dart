@@ -21,7 +21,7 @@ class _FinancialPageState extends State<FinancialPage> {
   void initState() {
     loadingItems();
 
-    GeneralQuery().query('clientes_financeiro', 'id', 'id').then((value) {
+    GeneralQuery().query('clientes_financeiro', 'id', 'id order by id desc').then((value) {
       setState(() {
         financialList = value;
         financialListDisplay = financialList;
