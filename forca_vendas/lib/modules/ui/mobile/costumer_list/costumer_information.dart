@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forca_vendas/modules/domain/usecases/general_query.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CostumerInformation extends StatefulWidget {
@@ -53,6 +54,22 @@ class CostumerInformation extends StatefulWidget {
 }
 
 class _CostumerInformationState extends State<CostumerInformation> {
+  var financialList = [];
+  var financialListDisplay = [];
+
+  @override
+  void initState() {
+    GeneralQuery()
+        .query('clientes_financeiro', 'id_cliente', widget.id)
+        .then((value) {
+      setState(() {
+        financialList = value;
+        financialListDisplay = financialList;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -352,6 +369,7 @@ class _CostumerInformationState extends State<CostumerInformation> {
               height: 12,
             ),
             Container(
+              padding: const EdgeInsets.only(top: 10, bottom: 10),
               height: MediaQuery.of(context).size.height * .51,
               width: MediaQuery.of(context).size.width * .95,
               decoration: BoxDecoration(
@@ -363,6 +381,128 @@ class _CostumerInformationState extends State<CostumerInformation> {
                         blurRadius: 12,
                         spreadRadius: 2)
                   ]),
+              child: financialListDisplay.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: financialListDisplay.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(4),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: Colors.white),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal:8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      financialListDisplay[index]['id']
+                                          .toString(),
+                                      style: GoogleFonts.quicksand(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: const Color(0xff01497c))),
+                                  const SizedBox(height: 12),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text('Valor: ',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey[600])),
+                                      Text(
+                                          financialListDisplay[index]
+                                                  ['valor_doc']
+                                              .toString(),
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xff01497c))),
+                                      const Spacer(),
+                                      Text('N. Parcelas: ',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey[600])),
+                                      Text(
+                                          financialListDisplay[index]
+                                                  ['parc_num']
+                                              .toString(),
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xff01497c))),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text('Data: ',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey[600])),
+                                      Text(
+                                          financialListDisplay[index]
+                                                  ['data_vecto']
+                                              .toString(),
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xff01497c))),
+                                      const Spacer(),
+                                      Text('Qtd. Parcelas: ',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey[600])),
+                                      Text(
+                                          financialListDisplay[index]
+                                                  ['parc_qtd']
+                                              .toString(),
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xff01497c))),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text('ID Venda: ',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.grey[600])),
+                                      Text(
+                                          financialListDisplay[index]
+                                                  ['id_venda']
+                                              .toString(),
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                              color: const Color(0xff01497c))),
+                                      const Spacer(),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const Divider(color: Colors.grey),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  : const Center(
+                      child: Text(
+                        "Não há nenhuma conta a receber vinculada ao cliente.",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
             )
           ],
         ),
