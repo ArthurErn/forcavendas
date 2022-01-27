@@ -24,17 +24,10 @@ class SaleProductsList extends StatefulWidget {
 }
 
 class _SaleProductsListState extends State<SaleProductsList> {
-  bool loading = true;
   TextEditingController quantidade = TextEditingController(text: '1');
   final formatoValores = NumberFormat.currency(locale: "pt_BR", symbol: "");
   var _tablePriceID = 0;
   String complemento = "";
-
-  @override
-  void initState() {
-    loadingItems();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -198,23 +191,7 @@ class _SaleProductsListState extends State<SaleProductsList> {
               ),
             ),
           )
-        : loading == false
-            ? Center(
-                child: Text(
-                  'Não foi possível encontrar nenhum produto',
-                  style: GoogleFonts.quicksand(
-                      fontSize: 15, color: const Color(0xff01497c)),
-                ),
-              )
-            : const Center(
-                child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: CircularProgressIndicator(
-                    color: Color(0xff01497c),
-                  ),
-                ),
-              );
+        : const Center();
   }
 
   void quantity(entity, idCliente) {
@@ -371,14 +348,5 @@ class _SaleProductsListState extends State<SaleProductsList> {
     var data = await GetTablePriceID().get();
     _tablePriceID = data[0]['id'];
     return _tablePriceID;
-  }
-  loadingItems() async {
-    await Future.delayed(const Duration(seconds: 3)).then((value) {
-      if (widget.items.isEmpty) {
-        setState(() {
-          loading = false;
-        });
-      }
-    });
   }
 }
