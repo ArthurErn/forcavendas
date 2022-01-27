@@ -38,7 +38,9 @@ class _FinancialPageState extends State<FinancialPage> {
         child: const Icon(Icons.arrow_downward_rounded),
         onPressed: () {
           setState(() {
-            listController.jumpTo(listController.position.maxScrollExtent);
+            listController.animateTo(listController.position.maxScrollExtent,
+                duration: const Duration(seconds: 2),
+                curve: Curves.fastOutSlowIn);
           });
         },
       ),
