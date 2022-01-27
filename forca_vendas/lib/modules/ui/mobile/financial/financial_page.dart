@@ -20,7 +20,6 @@ class _FinancialPageState extends State<FinancialPage> {
   @override
   void initState() {
     loadingItems();
-
     GeneralQuery().query('clientes_financeiro', 'id', 'id order by id desc').then((value) {
       setState(() {
         financialList = value;

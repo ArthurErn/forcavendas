@@ -18,7 +18,7 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage> {
   var scheduleList = [];
-  var loading = false;
+  var loading = true;
   TextEditingController observacaoC = TextEditingController();
   TextEditingController pickedDateC = TextEditingController(text: 'Nenhuma');
   TextEditingController pickedCostumerC =
@@ -26,9 +26,7 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   void initState() {
-    setState(() {
-      loadingItems();
-    });
+    loadingItems();
     GeneralQuery().query('clientes_visitas', 'id', 'id').then((value) {
       setState(() {
         scheduleList = value;
@@ -289,7 +287,7 @@ class _SchedulePageState extends State<SchedulePage> {
   }
 
   loadingItems() async {
-    Future.delayed(const Duration(seconds: 3)).then((value) {
+    await Future.delayed(const Duration(seconds: 3)).then((value) {
       if (scheduleList.isEmpty) {
         setState(() {
           loading = false;

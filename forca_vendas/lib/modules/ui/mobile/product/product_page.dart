@@ -107,7 +107,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   loadingItems() async {
-    await Future.delayed(const Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       setState(() {
         loading = false;
       });

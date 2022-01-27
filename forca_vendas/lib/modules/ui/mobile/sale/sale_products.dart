@@ -154,7 +154,9 @@ class _SaleProductsState extends State<SaleProducts> {
   loadingItems() async {
     await Future.delayed(const Duration(seconds: 3)).then((value) {
       if (productList.isEmpty) {
-        loading = false;
+        setState(() {
+          loading = false;
+        });
       }
     });
   }
