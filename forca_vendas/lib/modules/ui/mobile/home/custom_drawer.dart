@@ -142,10 +142,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Upload de dados",
-              style: GoogleFonts.quicksand(fontWeight: FontWeight.w700)),
-          content: Text("Deseja fazer upload dos dados?",
-              style: GoogleFonts.quicksand(fontWeight: FontWeight.w500)),
+          title: Text(
+            "Upload de dados",
+            style: GoogleFonts.quicksand(fontWeight: FontWeight.w700),
+          ),
+          content: Text(
+            "Deseja fazer upload dos dados?",
+            style: GoogleFonts.quicksand(fontWeight: FontWeight.w500),
+          ),
           actions: <Widget>[
             TextButton(
               child: Text("Cancelar",
