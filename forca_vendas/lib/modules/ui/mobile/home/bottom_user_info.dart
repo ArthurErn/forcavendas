@@ -31,6 +31,9 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
 
   @override
   void initState() {
+    setState(() {
+      logoutIcon = true;
+    });
     wait();
     super.initState();
   }
@@ -46,68 +49,69 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: !logoutIcon
-          ? Center(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 10),
-                    child: Flex(direction: Axis.vertical, children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Row(
-                                children: [
-                                  Container(
-                                    child: const Icon(
-                                      Icons.person,
-                                      color: Colors.white,
-                                    ),
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    margin: const EdgeInsets.only(right: 10)
+          ? Expanded(
+            flex: 1,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 10),
+                  child: Flex(direction: Axis.vertical, children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Row(
+                              children: [
+                                Container(
+                                  child: const Icon(
+                                    Icons.person,
+                                    color: Colors.white,
                                   ),
-                                  Text(
-                                    widget.user,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                ],
-                              ),
+                                  margin: const EdgeInsets.only(right: 10)
+                                ),
+                                Text(
+                                  widget.user,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                    ]),
-                  ),
-                  const Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                      onPressed: () {
-                        onClick();
-                      },
-                      icon: const Icon(
-                        Icons.logout,
-                        color: Colors.white,
+                          ),
+                        ],
                       ),
                     ),
+                  ]),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: IconButton(
+                    onPressed: () {
+                      onClick();
+                    },
+                    icon: const Icon(
+                      Icons.logout,
+                      color: Colors.white,
+                    ),
                   ),
-                ],
-              ),
-            )
+                ),
+              ],
+            ),
+          )
           : Column(
               children: [
                 Expanded(
