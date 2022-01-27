@@ -220,106 +220,109 @@ class _CostumerInformationState extends State<CostumerInformation> {
                           blurRadius: 12,
                           spreadRadius: 2)
                     ]),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.person,
-                          color: Color(0xff01497c),
-                          size: 35,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(widget.id,
-                            style: GoogleFonts.quicksand(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[600])),
-                        Text(' - ',
-                            style: GoogleFonts.quicksand(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[600])),
-                        Text(
-                            widget.nomeRazao.length > 30
-                                ? widget.nomeRazao.substring(0, 29) + "..."
-                                : widget.nomeRazao,
-                            style: GoogleFonts.quicksand(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[600]))
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.email,
-                          color: Color(0xff01497c),
-                          size: 33,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(widget.email,
-                            style: GoogleFonts.quicksand(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[600])),
-                      ],
-                    ),
-                    const SizedBox(width: 16),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.featured_play_list_sharp,
-                          color: Color(0xff01497c),
-                          size: 33,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(widget.cpfCnpj,
-                            style: GoogleFonts.quicksand(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[600])),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.ad_units,
-                              color: Color(0xff01497c),
-                              size: 35,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(widget.fone,
-                                style: GoogleFonts.quicksand(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.grey[600])),
-                          ],
-                        ),
-                        const SizedBox(width: 16),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.ad_units,
-                              color: Color(0xff01497c),
-                              size: 35,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(widget.fone2,
-                                style: GoogleFonts.quicksand(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.grey[600])),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4)
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            color: Color(0xff01497c),
+                            size: 35,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(widget.id,
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600])),
+                          Text(' - ',
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600])),
+                          Text(
+                              widget.nomeRazao.length > 30
+                                  ? widget.nomeRazao.substring(0, 29) + "..."
+                                  : widget.nomeRazao,
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600]))
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.email,
+                            color: Color(0xff01497c),
+                            size: 33,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(widget.email,
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600])),
+                        ],
+                      ),
+                      const SizedBox(width: 16),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.featured_play_list_sharp,
+                            color: Color(0xff01497c),
+                            size: 33,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(widget.cpfCnpj,
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[600])),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.ad_units,
+                                color: Color(0xff01497c),
+                                size: 35,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(widget.fone,
+                                  style: GoogleFonts.quicksand(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey[600])),
+                            ],
+                          ),
+                          const SizedBox(width: 16),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.ad_units,
+                                color: Color(0xff01497c),
+                                size: 35,
+                              ),
+                              const SizedBox(width: 6),
+                              Text(widget.fone2,
+                                  style: GoogleFonts.quicksand(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey[600])),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4)
+                    ],
+                  ),
                 ),
               ),
             ),
