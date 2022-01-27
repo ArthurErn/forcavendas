@@ -26,7 +26,6 @@ class SaleProductsList extends StatefulWidget {
 class _SaleProductsListState extends State<SaleProductsList> {
   TextEditingController quantidade = TextEditingController(text: '1');
   final formatoValores = NumberFormat.currency(locale: "pt_BR", symbol: "");
-  var _tablePriceID = 0;
   String complemento = "";
 
   @override
@@ -293,7 +292,6 @@ class _SaleProductsListState extends State<SaleProductsList> {
                           quantidadeList.add(int.parse(quantidade.text));
                           complementoList.add(complemento);
                           produto.add(entity);
-                          _getTablePrice();
                           Navigator.pop(context);
                           Navigator.pop(context);
                           Navigator.pushReplacement(
@@ -342,11 +340,5 @@ class _SaleProductsListState extends State<SaleProductsList> {
         pageBuilder: (context, animation1, animation2) {
           return const Center();
         });
-  }
-
-  _getTablePrice() async {
-    var data = await GetTablePriceID().get();
-    _tablePriceID = data[0]['id'];
-    return _tablePriceID;
   }
 }
