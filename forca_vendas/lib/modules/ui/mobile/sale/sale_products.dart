@@ -81,7 +81,7 @@ class _SaleProductsState extends State<SaleProducts> {
             child: productListDisplay.isNotEmpty
                 ? ListView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: productListDisplay.length,
+                    itemCount: productListDisplay.isNotEmpty? productListDisplay.length:1,
                     itemBuilder: (BuildContext context, int index) {
                       return SaleProductsList(
                         index: index,
