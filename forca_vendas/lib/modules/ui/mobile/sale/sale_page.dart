@@ -18,9 +18,7 @@ class _SalePageState extends State<SalePage> {
 
   @override
   void initState() {
-    setState(() {
       loadingItems();
-    });
     GeneralQuery().query('clientes', 'id', 'id').then((value) {
       setState(() {
         costumerList = value;

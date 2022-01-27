@@ -369,7 +369,7 @@ class _CostumerInformationState extends State<CostumerInformation> {
               ),
             ),
             const SizedBox(
-              height: 12,
+              height: 8,
             ),
             Container(
               padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -397,7 +397,7 @@ class _CostumerInformationState extends State<CostumerInformation> {
                         ),
                         Container(
                           margin: const EdgeInsets.only(top: 5),
-                          height: MediaQuery.of(context).size.height * .45,
+                          height: MediaQuery.of(context).size.height * .42,
                           width: MediaQuery.of(context).size.width * .95,
                           child: ListView.builder(
                             itemCount: financialListDisplay.length,

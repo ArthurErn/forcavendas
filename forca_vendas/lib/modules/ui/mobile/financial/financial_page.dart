@@ -20,7 +20,9 @@ class _FinancialPageState extends State<FinancialPage> {
   @override
   void initState() {
     loadingItems();
-    GeneralQuery().query('clientes_financeiro', 'id', 'id order by id desc').then((value) {
+    GeneralQuery()
+        .query('clientes_financeiro', 'id', 'id order by id desc')
+        .then((value) {
       setState(() {
         financialList = value;
         financialListDisplay = financialList;
@@ -128,9 +130,11 @@ class _FinancialPageState extends State<FinancialPage> {
 
   loadingItems() async {
     await Future.delayed(const Duration(seconds: 3)).then((value) {
-      setState(() {
-        loading = false;
-      });
+      if (financialListDisplay.isNotEmpty) {
+        setState(() {
+          loading = false;
+        });
+      }
     });
   }
 

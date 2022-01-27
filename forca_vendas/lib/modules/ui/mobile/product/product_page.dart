@@ -39,10 +39,10 @@ class _ProductPageState extends State<ProductPage> {
                 setState(() {
                   search = !search;
                   if (search == false) {
-                      setState(() {
-                        productListDisplay = productList;
-                      });
-                    }
+                    setState(() {
+                      productListDisplay = productList;
+                    });
+                  }
                 });
               },
               child: Icon(search == true ? Icons.close : Icons.search,
@@ -108,9 +108,11 @@ class _ProductPageState extends State<ProductPage> {
 
   loadingItems() async {
     Future.delayed(const Duration(seconds: 3)).then((value) {
-      setState(() {
-        loading = false;
-      });
+      if (productListDisplay.isNotEmpty) {
+        setState(() {
+          loading = false;
+        });
+      }
     });
   }
 
