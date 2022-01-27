@@ -133,10 +133,11 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.w700,
                             fontSize: 27),
                         const HomeStatistic(
-                            text: 'Valor vendido do dia',
-                            color: Color(0xff01497c),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12)
+                          text: 'Valor vendido do dia',
+                          color: Color(0xff01497c),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        )
                       ],
                     ),
                   ],

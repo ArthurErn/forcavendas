@@ -81,7 +81,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
-                icon: Icons.search,
+                icon: Icons.storage,
                 title: 'Consultar Produtos',
                 infoCount: 0,
                 onPressed: () => goTo(ProductPage(id: widget.idProduct)),
