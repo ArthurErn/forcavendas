@@ -79,17 +79,19 @@ class _SaleProductsState extends State<SaleProducts> {
                 : MediaQuery.of(context).size.height - 89,
             color: Colors.transparent,
             child: productListDisplay.isNotEmpty
-                ? ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: productListDisplay.isNotEmpty? productListDisplay.length:1,
-                    itemBuilder: (BuildContext context, int index) {
-                      return SaleProductsList(
-                        index: index,
-                        items: productListDisplay,
-                        id: widget.id,
-                        idCliente: widget.idCliente,
-                      );
-                    })
+                ? Scrollbar(
+                  child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: productListDisplay.isNotEmpty? productListDisplay.length:1,
+                      itemBuilder: (BuildContext context, int index) {
+                        return SaleProductsList(
+                          index: index,
+                          items: productListDisplay,
+                          id: widget.id,
+                          idCliente: widget.idCliente,
+                        );
+                      }),
+                )
                 : loading == false
                     ? Center(
                         child: Text(

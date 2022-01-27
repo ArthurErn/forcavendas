@@ -73,15 +73,17 @@ class _ProductPageState extends State<ProductPage> {
                   : MediaQuery.of(context).size.height - 89,
               color: Colors.transparent,
               child: productListDisplay.isNotEmpty
-                  ? ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: productListDisplay.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ProductListItem(
-                            items: productListDisplay,
-                            index: index,
-                            id: widget.id);
-                      })
+                  ? Scrollbar(
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: productListDisplay.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ProductListItem(
+                              items: productListDisplay,
+                              index: index,
+                              id: widget.id);
+                        }),
+                  )
                   : loading == false
                       ? Center(
                           child: Text(

@@ -121,24 +121,26 @@ class _PaymentMethodState extends State<PaymentMethod> {
                     ],
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.white),
-                child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: paymentList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return PaymentList(
-                          paymentList: paymentList,
-                          index: index,
-                          products: widget.products,
-                          idCliente: widget.idCliente,
-                          fPagto: fPagto,
-                          totalPreco: widget.totalPreco,
-                          quantity: widget.quantity,
-                          idTabPreco: widget.idTabPreco,
-                          totalDesconto: widget.totalDesconto,
-                          valorDesconto: widget.valorDesconto,
-                          percentualDesconto: widget.percentualDesconto,
-                          complemento: widget.complemento);
-                    }),
+                child: Scrollbar(
+                  child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: paymentList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return PaymentList(
+                            paymentList: paymentList,
+                            index: index,
+                            products: widget.products,
+                            idCliente: widget.idCliente,
+                            fPagto: fPagto,
+                            totalPreco: widget.totalPreco,
+                            quantity: widget.quantity,
+                            idTabPreco: widget.idTabPreco,
+                            totalDesconto: widget.totalDesconto,
+                            valorDesconto: widget.valorDesconto,
+                            percentualDesconto: widget.percentualDesconto,
+                            complemento: widget.complemento);
+                      }),
+                ),
               ),
             ],
           ),
