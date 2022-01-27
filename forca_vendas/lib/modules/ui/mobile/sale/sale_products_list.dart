@@ -70,7 +70,7 @@ class _SaleProductsListState extends State<SaleProductsList> {
                           widget.items[widget.index]['produto_status'] ?? "",
                       tabprecosStatus:
                           widget.items[widget.index]['tabprecos_status'] ?? "");
-                  quantity(produtoEntity, widget.idCliente);
+                  quantity(produtoEntity, widget.idCliente, widget.id);
                 });
               },
               child: SingleChildScrollView(
@@ -194,7 +194,7 @@ class _SaleProductsListState extends State<SaleProductsList> {
         : const Center();
   }
 
-  void quantity(entity, idCliente) {
+  void quantity(entity, idCliente, tableId) {
     showGeneralDialog(
         barrierColor: Colors.black.withOpacity(0.5),
         transitionBuilder: (context, a1, a2, widget) {
@@ -300,7 +300,7 @@ class _SaleProductsListState extends State<SaleProductsList> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SaleCart(
-                                      id: _tablePriceID,
+                                      id: tableId,
                                       idCliente: idCliente,
                                     )),
                           );
