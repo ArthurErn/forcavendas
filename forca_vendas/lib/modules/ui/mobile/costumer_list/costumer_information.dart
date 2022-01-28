@@ -60,7 +60,8 @@ class _CostumerInformationState extends State<CostumerInformation> {
   @override
   void initState() {
     GeneralQuery()
-        .query('clientes_financeiro', 'id_cliente', widget.id + " order by id desc")
+        .query('clientes_financeiro', 'id_cliente',
+            widget.id + " order by id desc")
         .then((value) {
       setState(() {
         financialList = value;
@@ -343,15 +344,17 @@ class _CostumerInformationState extends State<CostumerInformation> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      height: 9,
-                      width: 9,
-                      decoration: BoxDecoration(
-                          color: widget.status == '4'
+                    height: 9,
+                    width: 9,
+                    decoration: BoxDecoration(
+                      color: widget.status == '4'
+                          ? Colors.red[900]
+                          : widget.status == '2'
                               ? Colors.red[900]
-                              : widget.status == '2'
-                                  ? Colors.red[900]
-                                  : Colors.green[900],
-                          borderRadius: BorderRadius.circular(9))),
+                              : Colors.green[900],
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                  ),
                   const SizedBox(
                     width: 6,
                   ),
@@ -407,8 +410,9 @@ class _CostumerInformationState extends State<CostumerInformation> {
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.white),
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: Colors.white,
+                                  ),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8),
@@ -535,10 +539,10 @@ class _CostumerInformationState extends State<CostumerInformation> {
                           "Não há nenhuma conta a receber vinculada ao cliente.",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.quicksand(
-                              color: Colors.grey[600],
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            color: Colors.grey[600],
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),

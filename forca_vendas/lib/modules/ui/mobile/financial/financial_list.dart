@@ -20,8 +20,9 @@ class _FinancialListState extends State<FinancialList> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          
-            borderRadius: BorderRadius.circular(12), color: Colors.white),
+          borderRadius: BorderRadius.circular(12),
+          color: widget.index % 2 == 0 ? Colors.white : Colors.grey[100],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(

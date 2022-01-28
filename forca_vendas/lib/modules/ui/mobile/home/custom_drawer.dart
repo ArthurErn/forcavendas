@@ -85,7 +85,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               CustomListTile(
                 isCollapsed: _isCollapsed,
-                icon: Icons.search,
+                icon: Icons.storage,
                 title: 'Consultar Produtos',
                 infoCount: 0,
                 onPressed: () => goTo(ProductPage(id: widget.idProduct)),
@@ -146,10 +146,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Upload de dados",
-              style: GoogleFonts.quicksand(fontWeight: FontWeight.w700)),
-          content: Text("Deseja fazer upload dos dados?",
-              style: GoogleFonts.quicksand(fontWeight: FontWeight.w500)),
+          title: Text(
+            "Upload de dados",
+            style: GoogleFonts.quicksand(fontWeight: FontWeight.w700),
+          ),
+          content: Text(
+            "Deseja fazer upload dos dados?",
+            style: GoogleFonts.quicksand(fontWeight: FontWeight.w500),
+          ),
           actions: <Widget>[
             TextButton(
               child: Text("Cancelar",

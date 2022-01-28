@@ -87,25 +87,27 @@ class _SchedulePageState extends State<SchedulePage> {
               height: MediaQuery.of(context).size.height - 135,
               color: Colors.transparent,
               child: scheduleList.isNotEmpty
-                  ? ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: scheduleList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                scheduleCostumer(
-                                    scheduleList[index]['observacao'],
-                                    scheduleList[index]['data'],
-                                    scheduleList[index]['id_pessoa'],
-                                    scheduleList[index]['nome_pessoa'],
-                                    scheduleList[index]['id'],
-                                    "editado");
-                              });
-                            },
-                            child: ScheduleList(
-                                items: scheduleList, index: index));
-                      })
+                  ? Scrollbar(
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: scheduleList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  scheduleCostumer(
+                                      scheduleList[index]['observacao'],
+                                      scheduleList[index]['data'],
+                                      scheduleList[index]['id_pessoa'],
+                                      scheduleList[index]['nome_pessoa'],
+                                      scheduleList[index]['id'],
+                                      "editado");
+                                });
+                              },
+                              child: ScheduleList(
+                                  items: scheduleList, index: index));
+                        }),
+                  )
                   : loading == false
                       ? Center(
                           child: Text(

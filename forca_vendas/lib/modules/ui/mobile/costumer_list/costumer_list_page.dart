@@ -85,13 +85,15 @@ class _CostumerListState extends State<CostumerList> {
                     : MediaQuery.of(context).size.height - 89,
                 color: Colors.transparent,
                 child: costumerListDisplay.isNotEmpty
-                    ? ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: costumerListDisplay.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return CostumerListItem(
-                              items: costumerListDisplay, index: index);
-                        })
+                    ? Scrollbar(
+                      child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: costumerListDisplay.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return CostumerListItem(
+                                items: costumerListDisplay, index: index);
+                          }),
+                    )
                     : loading == false
                         ? Center(
                             child: Text(
