@@ -31,9 +31,6 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
 
   @override
   void initState() {
-    setState(() {
-      logoutIcon = true;
-    });
     wait();
     super.initState();
   }
@@ -49,8 +46,7 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: !logoutIcon
-          ? Expanded(
-            flex: 1,
+          ? Center(
             child: Row(
               children: [
                 Padding(
@@ -78,7 +74,7 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
                                   ),
                                   margin: const EdgeInsets.only(right: 10)
                                 ),
-                                Text(
+                                widget.isCollapsed ? Text(
                                   widget.user,
                                   style: const TextStyle(
                                     color: Colors.white,
@@ -86,8 +82,8 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
                                     fontSize: 18,
                                   ),
                                   maxLines: 1,
-                                  overflow: TextOverflow.clip,
-                                ),
+                                  overflow: TextOverflow.visible,
+                                ) : const Center()
                               ],
                             ),
                           ),
@@ -99,7 +95,7 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
-                  child: IconButton(
+                  child: widget.isCollapsed ? IconButton(
                     onPressed: () {
                       onClick();
                     },
@@ -107,7 +103,7 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
                       Icons.logout,
                       color: Colors.white,
                     ),
-                  ),
+                  ) : const Center(),
                 ),
               ],
             ),
