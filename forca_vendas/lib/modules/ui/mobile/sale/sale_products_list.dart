@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:forca_vendas/modules/domain/entities/product_entity.dart';
-import 'package:forca_vendas/modules/domain/usecases/get_table_price_id.dart';
 import 'package:forca_vendas/modules/ui/mobile/sale/sale_cart.dart';
 import 'package:forca_vendas/modules/ui/mobile/sale/sale_products.dart';
 import 'package:google_fonts/google_fonts.dart';

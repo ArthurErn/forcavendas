@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   String totalVendido = '0';
   String? now;
   String? now2;
+  bool isCollapsed = false;
   var _tablePriceID = 0;
   bool search = false;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -52,7 +53,11 @@ class _HomePageState extends State<HomePage> {
         headerTitle: headerTitle ?? "",
         user: user ?? "",
         idProduct: _tablePriceID,
+        isCollapsed: isCollapsed,
       ),
+      onDrawerChanged: (value) {
+        isCollapsed = false;
+      },
       appBar: AppBar(
         toolbarHeight: 65,
         leading: GestureDetector(

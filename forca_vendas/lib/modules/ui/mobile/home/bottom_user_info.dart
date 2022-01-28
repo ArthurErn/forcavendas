@@ -22,11 +22,9 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
   }
 
   void wait() async {
-    await Future.delayed(const Duration(milliseconds: 1000)).then((value) {
       setState(() {
-        logoutIcon = true;
+        logoutIcon = !widget.isCollapsed;
       });
-    });
   }
 
   @override

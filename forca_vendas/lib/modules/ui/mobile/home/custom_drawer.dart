@@ -12,15 +12,19 @@ import 'bottom_user_info.dart';
 import 'custom_list_tile.dart';
 import 'header.dart';
 
+// ignore: must_be_immutable
 class CustomDrawer extends StatefulWidget {
   final String headerTitle;
   final int idProduct;
   final String user;
-  const CustomDrawer(
+  bool isCollapsed;
+  CustomDrawer(
       {Key? key,
       required this.headerTitle,
       required this.user,
-      required this.idProduct})
+      required this.idProduct,
+      required this.isCollapsed
+      })
       : super(key: key);
 
   @override
