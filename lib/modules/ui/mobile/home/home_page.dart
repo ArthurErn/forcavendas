@@ -47,50 +47,107 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
-          );
-        });
-      },
-      child: Scaffold(
-        key: scaffoldKey,
-        drawer: CustomDrawer(
-          headerTitle: headerTitle ?? "",
-          user: user ?? "",
-          idProduct: _tablePriceID,
-          isCollapsed: isCollapsed,
-        ),
-        appBar: AppBar(
-          toolbarHeight: 65,
-          leading: GestureDetector(
-            onTap: () {
-              scaffoldKey.currentState?.openDrawer();
-            },
-            child: const Icon(
-              Icons.menu,
-              color: Color(0xff01497c),
-            ),
+    return Scaffold(
+      key: scaffoldKey,
+      drawer: CustomDrawer(
+        headerTitle: headerTitle ?? "",
+        user: user ?? "",
+        idProduct: _tablePriceID,
+        isCollapsed: isCollapsed,
+      ),
+      appBar: AppBar(
+        toolbarHeight: 65,
+        leading: GestureDetector(
+          onTap: () {
+            scaffoldKey.currentState?.openDrawer();
+          },
+          child: const Icon(
+            Icons.menu,
+            color: Color(0xff01497c),
           ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          title: Text('FORÇA DE VENDAS',
-              style: GoogleFonts.quicksand(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: .2,
-                  color: const Color(0xff01497c))),
         ),
-        backgroundColor: const Color(0xffe0f5f9),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 100,
-                margin: const EdgeInsets.all(12),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: Text('FORÇA DE VENDAS',
+            style: GoogleFonts.quicksand(
+                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                letterSpacing: .2,
+                color: const Color(0xff01497c))),
+      ),
+      backgroundColor: const Color(0xffe0f5f9),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 100,
+              margin: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 12,
+                        spreadRadius: 2)
+                  ]),
+              child: Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        HomeStatistic(
+                            text: agendaDia,
+                            color: const Color(0xff01497c),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 27),
+                        const HomeStatistic(
+                            text: 'Agendamentos do dia',
+                            color: Color(0xff01497c),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12)
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        HomeStatistic(
+                            text: pedidosDia,
+                            color: const Color(0xff01497c),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 27),
+                        const HomeStatistic(
+                            text: 'Pedidos do dia',
+                            color: Color(0xff01497c),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12)
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        HomeStatistic(
+                            text: totalVendido,
+                            color: const Color(0xff01497c),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 27),
+                        const HomeStatistic(
+                          text: 'Valor vendido do dia',
+                          color: Color(0xff01497c),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+                margin: const EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(6),
@@ -100,142 +157,75 @@ class _HomePageState extends State<HomePage> {
                           blurRadius: 12,
                           spreadRadius: 2)
                     ]),
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          HomeStatistic(
-                              text: agendaDia,
-                              color: const Color(0xff01497c),
-                              fontWeight: FontWeight.w700,
-                              fontSize: 27),
-                          const HomeStatistic(
-                              text: 'Agendamentos do dia',
-                              color: Color(0xff01497c),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12)
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CostumerList()),
+                                );
+                              },
+                              child: const HomeButtons(text: 'Clientes')),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SchedulePage()),
+                                );
+                              },
+                              child: const HomeButtons(text: 'Agenda')),
                         ],
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          HomeStatistic(
-                              text: pedidosDia,
-                              color: const Color(0xff01497c),
-                              fontWeight: FontWeight.w700,
-                              fontSize: 27),
-                          const HomeStatistic(
-                              text: 'Pedidos do dia',
-                              color: Color(0xff01497c),
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12)
-                        ],
+                      const SizedBox(
+                        height: 8,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          HomeStatistic(
-                              text: totalVendido,
-                              color: const Color(0xff01497c),
-                              fontWeight: FontWeight.w700,
-                              fontSize: 27),
-                          const HomeStatistic(
-                            text: 'Valor vendido do dia',
-                            color: Color(0xff01497c),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
-                          )
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const SalePage()),
+                                );
+                              },
+                              child: const HomeButtons(text: 'Vendas')),
                         ],
                       ),
                     ],
                   ),
+                )),
+            Container(
+              margin: const EdgeInsets.all(12),
+              height: MediaQuery.of(context).size.height * .46,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6)),
+              child: Center(
+                child: Text(
+                  'Lotus ERP - Força de Vendas \n\nVersão 1.0.0\n\nMódulos: \n\nCadastro e consulta de clientes,\nRegistro de vendas e visitas,\nUpload e sincronização de dados.',
+                  style:
+                      GoogleFonts.quicksand(fontSize: 15, letterSpacing: 1),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 12,
-                            spreadRadius: 2)
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const CostumerList()),
-                                  );
-                                },
-                                child: const HomeButtons(text: 'Clientes')),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SchedulePage()),
-                                  );
-                                },
-                                child: const HomeButtons(text: 'Agenda')),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const SalePage()),
-                                  );
-                                },
-                                child: const HomeButtons(text: 'Vendas')),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )),
-              Container(
-                margin: const EdgeInsets.all(12),
-                height: MediaQuery.of(context).size.height * .46,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(6)),
-                child: Center(
-                  child: Text(
-                    'Lotus ERP - Força de Vendas \n\nVersão 1.0.0\n\nMódulos: \n\nCadastro e consulta de clientes,\nRegistro de vendas e visitas,\nUpload e sincronização de dados.',
-                    style:
-                        GoogleFonts.quicksand(fontSize: 15, letterSpacing: 1),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
