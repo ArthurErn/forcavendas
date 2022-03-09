@@ -111,7 +111,7 @@ class _SchedulePageState extends State<SchedulePage> {
                   : loading == false
                       ? Center(
                           child: Text(
-                            'Não foi possível encontrar nenhuma informação',
+                            'Não foi possível encontrar nenhuma informação.',
                             style: GoogleFonts.quicksand(
                                 fontSize: 15, color: const Color(0xff01497c)),
                           ),

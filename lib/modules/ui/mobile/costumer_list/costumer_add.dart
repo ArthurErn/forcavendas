@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:forca_vendas/modules/domain/usecases/get_customer_type_id.dart';
 import 'package:forca_vendas/modules/domain/usecases/get_id_status.dart';
-import 'package:forca_vendas/modules/domain/usecases/get_municipality_id.dart'; 
+import 'package:forca_vendas/modules/domain/usecases/get_municipality_id.dart';
+import 'package:forca_vendas/modules/domain/usecases/notify.dart'; 
 import 'package:forca_vendas/modules/external/database/database_connection.dart';
 import 'package:forca_vendas/modules/infra/usecases/database/store/post_costumer_db.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -85,7 +86,7 @@ class _CostumerAddState extends State<CostumerAdd> {
           emailRController.text,
           context);
     } else {
-
+      Notify().pop(context, "Estão faltando informações.", Icons.error, Colors.red, "Erro");
     }
   }
 
