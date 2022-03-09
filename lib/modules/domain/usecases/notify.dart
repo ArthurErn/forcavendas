@@ -13,7 +13,7 @@ class Notify {
       displayTitle: false,
       description: text,
       descriptionStyle: const TextStyle(fontSize: 14),
-      animationType: ANIMATION_TYPE.FROM_LEFT,
+      animationType: ANIMATION_TYPE.fromLeft,
       animationDuration: const Duration(milliseconds: 400),
       autoDismiss: true,
       toastDuration: const Duration(milliseconds: 2200),
