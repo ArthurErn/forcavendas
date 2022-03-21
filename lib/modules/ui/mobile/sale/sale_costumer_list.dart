@@ -23,6 +23,7 @@ class _SaleCostumerListState extends State<SaleCostumerList> {
     _getTablePrice();
     super.initState();
   }
+
   var _tablePriceID = 0;
   @override
   Widget build(BuildContext context) {
@@ -34,8 +35,13 @@ class _SaleCostumerListState extends State<SaleCostumerList> {
           quantidadeList.clear();
           complementoList.clear();
           costumer = widget.items[widget.index]['nome_razao'];
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => SaleCart(id: widget.items[widget.index]['id_tabela_preco'], idCliente: widget.items[widget.index]['id'],)));
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SaleCart(
+                        id: widget.items[widget.index]['id_tabela_preco'],
+                        idCliente: widget.items[widget.index]['id'],
+                      )));
         },
         child: Container(
           decoration: BoxDecoration(

@@ -5,7 +5,7 @@ class ProductResponse implements IResponse {
   @override
   Future ping(ip, parameter) async {
     var response = await controller.connect(
-        'http://$ip/lotuserp/fvenget11_produtos?pidempresa=$parameter');
+        'http://$ip/fvenget11_tabprecos_produtos?pidempresa=$parameter');
     return response;
   }
 }

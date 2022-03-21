@@ -8,7 +8,7 @@ class CostumerFinancialStoreDatabase implements IStore{
   String tableName = 'clientes_financeiro';
 
   @override
-  void store(ip, parameter) async {
+  Future store(ip, parameter) async {
     Database _db = await DatabaseConnection().get();
     var _response = await CostumerFinancialResponse().ping(ip.toString(), parameter.toString());
     for(int i = 0; i < _response.length; i++) {

@@ -9,7 +9,7 @@ class RegionStoreDatabase implements IStore{
   String tableName = 'regioes_bairros';
 
   @override
-  void store(ip, parameter) async {
+  Future store(ip, parameter) async {
     Database _db = await DatabaseConnection().get();
     parameter = await GetCollaboratorID().get();
     var _response = await RegionResponse().ping(ip.toString(), parameter.toString());

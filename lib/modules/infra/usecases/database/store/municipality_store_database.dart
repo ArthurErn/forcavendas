@@ -9,7 +9,7 @@ class MunicipalityStoreDatabase implements IStore{
   String tableName = 'municipio';
 
   @override
-  void store(ip, parameter) async {
+  Future store(ip, parameter) async {
     Database _db = await DatabaseConnection().get();
     parameter = await GetCollaboratorID().get();
     var _response = await MunicipalityResponse().ping(ip.toString(), parameter.toString());

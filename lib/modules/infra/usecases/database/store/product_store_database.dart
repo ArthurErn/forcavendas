@@ -1,5 +1,5 @@
 import 'package:forca_vendas/modules/domain/entities/product_entity.dart';
-import 'package:forca_vendas/modules/infra/usecases/api/product_tab_price_items.dart';
+import 'package:forca_vendas/modules/infra/usecases/api/product_response.dart';
 import 'package:forca_vendas/modules/infra/usecases/database/store/store_interface.dart';
 import 'package:forca_vendas/modules/external/database/database_connection.dart';
 import 'package:sqflite/sqlite_api.dart';
@@ -9,12 +9,12 @@ class ProductStoreDatabase implements IStore {
   String tableName = 'produto';
 
   @override
-  void store(
+  Future store(
     ip,
     parameter,
   ) async {
     Database _db = await DatabaseConnection().get();
-    var _response = await ProductTabPriceItemsResponse()
+    var _response = await ProductResponse()
         .ping(ip.toString(), parameter.toString());
     for (int i = 0; i < _response.length; i++) {
       var json = ProductEntity(

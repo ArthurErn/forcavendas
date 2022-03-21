@@ -5,7 +5,7 @@ class PriceResponse implements IResponse {
   @override
   Future ping(ip, parameter) async {
     var response = await controller.connect(
-        'http://$ip/lotuserp/fvenget10_clientes_tabprecos?pidcolaborador=$parameter');
+        'http://$ip/fvenget10_tabprecos?pidcolaborador=$parameter');
     return response;
   }
 }

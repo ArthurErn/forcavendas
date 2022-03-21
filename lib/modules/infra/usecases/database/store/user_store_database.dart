@@ -7,13 +7,13 @@ import 'package:sqflite/sqlite_api.dart';
 class UserStoreDatabase {
   String tableName = 'usuario';
 
-  void store(ip, parameter, context) async {
+  Future store(ip, parameter, context) async {
     Database _db = await DatabaseConnection().get();
     try {
       var _response =
           await UserResponse().ping(ip.toString(), parameter.toString());
       if (_response.toString().isNotEmpty) {
-        _db.insert(tableName, _response,
+        _db.insert(tableName, _response[0],
             conflictAlgorithm: ConflictAlgorithm.replace);
 
         Notify().pop(context, 'Conectado com sucesso no servidor', Icons.check,

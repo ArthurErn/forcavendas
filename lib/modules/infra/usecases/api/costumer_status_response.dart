@@ -5,7 +5,7 @@ class CostumerStatusResponse implements IResponse{
   @override
   Future ping(ip, parameter) async {
     var response = await controller.connect(
-        'http://$ip/lotuserp/fvenget05_clientes_status');
+        'http://$ip/fvenget05_clientes_status');
     return response;
   }
 }

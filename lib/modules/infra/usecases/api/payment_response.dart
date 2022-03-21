@@ -5,7 +5,7 @@ class PaymentResponse implements IResponse{
   @override
   Future ping(ip, parameter) async {
     var response = await controller.connect(
-        'http://$ip/lotuserp/fvenget03_fpagtos?pidempresa=$parameter');
+        'http://$ip/fvenget03_fpagtos?pidempresa=$parameter');
     return response;
   }
 }

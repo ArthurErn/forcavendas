@@ -7,7 +7,7 @@ class CostumerResponse implements IResponse {
   Future ping(ip, parameter) async {
     var id = await GetCollaboratorID().get();
     var response = await controller.connect(
-        'http://$ip/lotuserp/fvenget07_clientes?pidcolaborador=$id');
+        'http://$ip/fvenget07_clientes?pidcolaborador=$id');
     return response;
   }
 }

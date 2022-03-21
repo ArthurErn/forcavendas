@@ -9,7 +9,7 @@ class PriceItemStoreDatabase implements IStore {
   String tableName = 'produto_tab_precos_itens';
 
   @override
-  void store(ip, parameter) async {
+  Future store(ip, parameter) async {
     Database _db = await DatabaseConnection().get();
     var items = await ProductTabPriceItemsResponse()
         .ping(ip.toString(), parameter.toString());

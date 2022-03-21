@@ -5,7 +5,7 @@ class MunicipalityResponse implements IResponse {
   @override
   Future ping(ip, parameter) async {
     var response = await controller.connect(
-        'http://$ip/lotuserp/fvenget02_municipios?pidcolaborador=$parameter');
+        'http://$ip/fvenget02_municipios?pidcolaborador=$parameter');
     return response;
   }
 }

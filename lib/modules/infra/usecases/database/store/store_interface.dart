@@ -1,5 +1,5 @@
 abstract class IStore {
   String tableName = '';
 
-  void store(ip, parameter) async{}
+  Future store(ip, parameter) async{}
 }

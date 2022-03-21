@@ -11,21 +11,25 @@ class UploadSchedule {
         await GeneralQuery().query('clientes_visitas', 'enviado', 0);
     Database db = await DatabaseConnection().get();
     for (int i = 0; i < costumerData.length; i++) {
-      var jsonData = jsonEncode({
+      var jsonData = {
         "id": 0,
         "id_pessoa": costumerData[i]['id_pessoa'],
         "id_vendedor": costumerData[i]['id_vendedor'],
         "data": costumerData[i]['data'],
         "observacao": costumerData[i]['observacao'],
         "visitou": 0
-      });
+      };
       var response = await HttpPost().connect(
-          'http://${ipController.text}/lotuserp/fvenpost13_clientes_visitas',
-          jsonData,
+          'http://${ipController.text}/fvenpost13_clientes_visitas',
+          jsonEncode(jsonData),
           context);
       //print(jsonData);
-        await db.rawUpdate(
-            '''UPDATE clientes_visitas SET id = ${response['id']}, enviado = 1 WHERE id = ${costumerData[i]['id']};''');
+      var res = response
+            .toString()
+            .replaceAll("{success: true, message: ", "")
+            .replaceAll("}", "");
+      await db.rawUpdate(
+          '''UPDATE clientes_visitas SET id = $res, enviado = 1 WHERE id = ${costumerData[i]['id']};''');
     }
   }
 }
