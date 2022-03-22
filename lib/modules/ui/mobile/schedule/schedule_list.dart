@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,28 +32,32 @@ class _ScheduleListState extends State<ScheduleList> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                    widget.items[widget.index]['nome_pessoa'].length > 27
-                        ? widget.items[widget.index]['nome_pessoa']
-                            .toString()
-                            .substring(0, 26)
-                        : widget.items[widget.index]['nome_pessoa'].toString(),
-                    style: GoogleFonts.quicksand(
-                        color: const Color(0xff01497c),
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600)),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .8,
+                  child: AutoSizeText(
+                      widget.items[widget.index]['nome_pessoa'].toString(),
+                      maxLines: 1,
+                      style: GoogleFonts.quicksand(
+                          color: const Color(0xff01497c),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600)),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                        widget.items[widget.index]['observacao'].length > 26
-                            ? widget.items[widget.index]['observacao']
-                                .toString()
-                                .substring(0, 25)
-                            : widget.items[widget.index]['observacao']
-                                .toString(),
-                        style: GoogleFonts.quicksand(
-                            color: Colors.black, fontSize: 17)),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .5,
+                      child: AutoSizeText(
+                          widget.items[widget.index]['observacao'].length > 26
+                              ? widget.items[widget.index]['observacao']
+                                  .toString()
+                                  .substring(0, 25)
+                              : widget.items[widget.index]['observacao']
+                                  .toString(),
+                          maxLines: 1,
+                          style: GoogleFonts.quicksand(
+                              color: Colors.black, fontSize: 17)),
+                    ),
                     const SizedBox(width: 5),
                     Text(widget.items[widget.index]['data'].toString(),
                         style: GoogleFonts.quicksand(

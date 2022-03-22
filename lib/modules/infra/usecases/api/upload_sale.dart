@@ -21,6 +21,7 @@ class UploadSale {
         jsonBodyData =
             '{"item": ${bodyData[i]['item']},"id_produto": ${bodyData[i]['id_produto']},"complemento": "${bodyData[i]['complemento']}","vlr_vendido": ${bodyData[i]['vlr_vendido']},"qtde": ${bodyData[i]['qtde']},"tot_bruto": ${bodyData[i]['tot_bruto']},"vlr_desc_prc": ${bodyData[i]['vlr_desc_prc']},"vlr_desc_vlr": ${bodyData[i]['vlr_desc_vlr']},"vlr_liquido": ${bodyData[i]['vlr_liquido']},"grade": "${bodyData[i]['grade']}","id_vendedor": ${bodyData[i]['id_vendedor']}},';
         concatJson = concatJson + jsonBodyData;
+        
         _db.rawUpdate(
             '''UPDATE vendas_itens SET enviado = 1 WHERE id_venda = ${headerData[0]['id_venda']};''');
       }
@@ -28,9 +29,9 @@ class UploadSale {
       var jsonFooter = ']}';
       concatJson = concatJson + jsonFooter;
       concatJson = concatJson.toString().replaceAll("},]}", "}]}");
+      print(concatJson);
       var response = await HttpPost().connect(
           'http://${ipController.text}/fvenpost12_vendas', concatJson, context);
-
       _db.rawUpdate(
           '''UPDATE vendas SET situacao = 1, id_venda = ${response.toString().replaceAll("{success: true, message: ", "").replaceAll("}", "")} WHERE id_venda = ${headerData[i]['id_venda']};''');
       _db.rawUpdate(

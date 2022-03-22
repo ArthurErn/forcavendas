@@ -18,7 +18,8 @@ class LoginAuth {
         MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } else {
-      Notify().pop(context, 'Erro ao logar, verifique os campos!', Icons.error, Colors.red, 'Erro');
+      Notify().pop(context, 'Erro ao logar, verifique os campos!', Icons.error,
+          Colors.red, 'Erro');
     }
   }
 }

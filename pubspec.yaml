@@ -16,13 +16,14 @@ dependencies:
   http: ^0.13.4
   sqflite: ^2.0.0+4
   crypto: ^3.0.1
-  google_fonts: ^2.1.0
+  google_fonts: ^2.3.1
   font_awesome_flutter: ^9.2.0
   shared_preferences: ^2.0.8
   cherry_toast: ^1.0.2
   intl: ^0.17.0
   flutter_custom_clippers: ^2.0.0
   geolocator: ^7.7.1
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
