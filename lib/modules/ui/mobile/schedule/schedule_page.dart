@@ -158,7 +158,10 @@ class _SchedulePageState extends State<SchedulePage> {
                         controller: observacaoC,
                         decoration: InputDecoration(
                             hintText: "Observação",
-                            hintStyle: GoogleFonts.quicksand()),
+                            hintStyle: GoogleFonts.quicksand(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                            )),
                       ),
                     ),
                     const SizedBox(height: 15),
@@ -258,31 +261,48 @@ class _SchedulePageState extends State<SchedulePage> {
                 ),
               )),
           actions: <Widget>[
-            TextButton(
-              child: Text("Confirmar",
-                  style: GoogleFonts.quicksand(
-                      fontWeight: FontWeight.w700,
-                      color: const Color(0xff01497c))),
-              onPressed: () {
-                setState(() {
-                  if (observacaoC.text != "" &&
-                      pickedCostumerC.text != 'Nenhum cliente selecionado' &&
-                      pickedDateC.text != 'Nenhuma') {
-                    PostScheduleDatabase().post(
-                        context,
-                        costumerIDSchedule,
-                        pickedDateC.text.inverseDate(),
-                        observacaoC.text,
-                        pickedCostumerC.text,
-                        id,
-                        texto);
-                  } else {
-                    Notify().pop(context, 'Preencha todos os campos!',
-                        Icons.error, Colors.red, 'Erro');
-                  }
-                });
-              },
-            ),
+            GestureDetector(
+                onTap: () {
+                  setState(() {
+                    if (observacaoC.text != "" &&
+                        pickedCostumerC.text != 'Nenhum cliente selecionado' &&
+                        pickedDateC.text != 'Nenhuma') {
+                      PostScheduleDatabase().post(
+                          context,
+                          costumerIDSchedule,
+                          pickedDateC.text.inverseDate(),
+                          observacaoC.text,
+                          pickedCostumerC.text,
+                          id,
+                          texto);
+                    } else {
+                      Notify().pop(context, 'Preencha todos os campos!',
+                          Icons.error, Colors.red, 'Erro');
+                    }
+                  });
+                },
+                child: Container(
+                  height: 40.0,
+                  width: 100.0,
+                  margin: const EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'Confirmar',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color.fromARGB(235, 1, 73, 124),
+                          Color.fromARGB(255, 1, 73, 124)
+                        ],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                      ),
+                      borderRadius: BorderRadius.circular(30.0)),
+                ))
           ],
         );
       },

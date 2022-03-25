@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         title: Text('FORÇA DE VENDAS',
             style: GoogleFonts.quicksand(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.w700,
                 letterSpacing: .2,
                 color: const Color(0xff01497c))),
@@ -105,9 +105,9 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.w700,
                             fontSize: 27),
                         const HomeStatistic(
-                            text: 'Agendamentos do dia',
+                            text: 'Agendamentos\n do dia',
                             color: Color(0xff01497c),
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                             fontSize: 12)
                       ],
                     ),
@@ -120,9 +120,9 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.w700,
                             fontSize: 27),
                         const HomeStatistic(
-                            text: 'Pedidos do dia',
+                            text: 'Pedidos\n do dia',
                             color: Color(0xff01497c),
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w500,
                             fontSize: 12)
                       ],
                     ),
@@ -135,9 +135,9 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.w700,
                             fontSize: 27),
                         const HomeStatistic(
-                          text: 'Valor vendido do dia',
+                          text: 'Valor vendido\n do dia',
                           color: Color(0xff01497c),
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           fontSize: 12,
                         )
                       ],
@@ -214,13 +214,14 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.height * .46,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(6)),
               child: Center(
                 child: Text(
                   'Lotus ERP - Força de Vendas \n\nVersão 1.0.0\n\nMódulos: \n\nCadastro e consulta de clientes,\nRegistro de vendas e visitas,\nUpload e sincronização de dados.',
-                  style:
-                      GoogleFonts.quicksand(fontSize: 15, letterSpacing: 1),
+                  style: GoogleFonts.quicksand(
+                      fontSize: 15,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500),
                   textAlign: TextAlign.center,
                 ),
               ),
