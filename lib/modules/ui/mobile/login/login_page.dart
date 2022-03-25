@@ -56,16 +56,11 @@ class _LoginPageState extends State<LoginPage> {
                   GestureDetector(
                       onTap: () {
                         setState(() {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return LoginConfigAuthentication();
-                              });
                           isLogin == true
                               ? showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return LoginConfigAuthentication();
+                                    return const LoginConfigAuthentication();
                                   })
                               : isLogin = true;
                         });
