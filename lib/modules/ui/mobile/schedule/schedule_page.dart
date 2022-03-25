@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:forca_vendas/modules/domain/usecases/general_query.dart';
 import 'package:forca_vendas/modules/domain/usecases/notify.dart';
+import 'package:forca_vendas/modules/extensions/string_extension.dart';
 import 'package:forca_vendas/modules/infra/usecases/database/store/post_schedule_db.dart';
 import 'package:forca_vendas/modules/ui/mobile/home/home_page.dart';
 import 'package:forca_vendas/modules/ui/mobile/schedule/schedule_costumer.dart';
@@ -88,26 +89,26 @@ class _SchedulePageState extends State<SchedulePage> {
               color: Colors.transparent,
               child: scheduleList.isNotEmpty
                   ? Scrollbar(
-                    child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: scheduleList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  scheduleCostumer(
-                                      scheduleList[index]['observacao'],
-                                      scheduleList[index]['data'],
-                                      scheduleList[index]['id_pessoa'],
-                                      scheduleList[index]['nome_pessoa'],
-                                      scheduleList[index]['id'],
-                                      "editado");
-                                });
-                              },
-                              child: ScheduleList(
-                                  items: scheduleList, index: index));
-                        }),
-                  )
+                      child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: scheduleList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    scheduleCostumer(
+                                        scheduleList[index]['observacao'],
+                                        scheduleList[index]['data'],
+                                        scheduleList[index]['id_pessoa'],
+                                        scheduleList[index]['nome_pessoa'],
+                                        scheduleList[index]['id'],
+                                        "editado");
+                                  });
+                                },
+                                child: ScheduleList(
+                                    items: scheduleList, index: index));
+                          }),
+                    )
                   : loading == false
                       ? Center(
                           child: Text(
@@ -270,7 +271,7 @@ class _SchedulePageState extends State<SchedulePage> {
                     PostScheduleDatabase().post(
                         context,
                         costumerIDSchedule,
-                        pickedDateC.text,
+                        pickedDateC.text.inverseDate(),
                         observacaoC.text,
                         pickedCostumerC.text,
                         id,

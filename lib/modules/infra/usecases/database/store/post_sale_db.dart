@@ -23,7 +23,7 @@ class PostSaleDatabase {
       complemento) async {
     var idVendedor = await GetCollaboratorID().get();
     var horaVenda = DateFormat("HH:mm:ss").format(DateTime.now());
-    var dataVenda = DateFormat("yyyy-MM-dd").format(DateTime.now());
+    var dataVenda = DateFormat("dd-MM-yyyy").format(DateTime.now());
     var idUsuario =
         await GeneralQuery().query('usuario', 'id_colaborador', idVendedor);
     var lat = await GetUserLocation().getCurrentLat();
@@ -51,6 +51,7 @@ class PostSaleDatabase {
       "latitude": lat.toString(),
       "longitude": long.toString(),
     };
+    print(jsonDataHeader);
 
     Database _db = await DatabaseConnection().get();
     var id = await _db.insert('vendas', jsonDataHeader,
