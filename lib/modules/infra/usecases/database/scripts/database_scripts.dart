@@ -193,4 +193,17 @@ class DatabaseScripts {
     enviado integer DEFAULT 0,
     PRIMARY KEY(id)
   );''';
+
+  String createTableVendasLista = '''CREATE TABLE vendas_lista(
+    id integer,
+    data_venda date,
+    hora_venda character varying(10),
+    nome_cliente character varying(500),
+    id_vendedor integer,
+    nome_fpagto character varying(500),
+    tot_bruto numeric(15, 2),
+    tot_desc_prc numeric(15, 4),
+    tot_liquido numeric(15, 2),
+    PRIMARY KEY(id)
+  );''';
 }

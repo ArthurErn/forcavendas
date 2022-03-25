@@ -18,6 +18,7 @@ class OpenDatabase extends DatabaseScripts {
       db.execute(createTableVendas);
       db.execute(createTableVendasItens);
       db.execute(createTableAgenda);
+      db.execute(createTableVendasLista);
     });
     return db;
   }
