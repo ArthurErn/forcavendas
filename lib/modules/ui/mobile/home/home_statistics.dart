@@ -13,7 +13,7 @@ class HomeStatistic extends StatefulWidget {
       required this.color,
       required this.fontWeight,
       required this.fontSize,
-      this.backgroundColor=Colors.white})
+      this.backgroundColor = Colors.white})
       : super(key: key);
 
   @override
@@ -26,6 +26,7 @@ class _HomeStatisticState extends State<HomeStatistic> {
     return Material(
       child: Text(
         widget.text,
+        textAlign: TextAlign.center,
         style: GoogleFonts.quicksand(
           fontSize: widget.fontSize,
           color: widget.color,
