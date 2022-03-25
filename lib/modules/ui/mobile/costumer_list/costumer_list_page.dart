@@ -128,14 +128,15 @@ class _CostumerListState extends State<CostumerList> {
           loadingItems();
           texto = texto.toUpperCase();
           setState(() {
-            costumerListDisplay = costumerList.where((produto) {
+            costumerListDisplay = costumerList.where((cliente) {
               var costumerName = 
-                  produto['nome_razao'].toString().toUpperCase();
+                  cliente['nome_razao'].toString().toUpperCase();
               var costumerFantasy =
-                  produto['apelido_fantasia'].toString().toUpperCase();
-              var costumerID = produto['id'].toString().toUpperCase();
+                  cliente['apelido_fantasia'].toString().toUpperCase();
+              var costumerID = cliente['id'].toString().toUpperCase();
+              var customerCpfCnpj = cliente['cpf_cnpj'].toString();
               return costumerName.contains(texto) || costumerID.contains(texto) ||
-                  costumerFantasy.contains(texto);
+                  costumerFantasy.contains(texto) || customerCpfCnpj.contains(texto);
             }).toList();
           });
         },
