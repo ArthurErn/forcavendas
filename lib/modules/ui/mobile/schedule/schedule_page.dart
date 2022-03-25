@@ -301,7 +301,7 @@ class _SchedulePageState extends State<SchedulePage> {
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                       ),
-                      borderRadius: BorderRadius.circular(30.0)),
+                      borderRadius: BorderRadius.circular(12)),
                 ))
           ],
         );

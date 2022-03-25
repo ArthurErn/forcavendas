@@ -22,9 +22,9 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
   }
 
   void wait() async {
-      setState(() {
-        logoutIcon = !widget.isCollapsed;
-      });
+    setState(() {
+      logoutIcon = !widget.isCollapsed;
+    });
   }
 
   @override
@@ -45,67 +45,70 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
       ),
       child: !logoutIcon
           ? Center(
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 10),
-                  child: Flex(direction: Axis.vertical, children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              children: [
-                                Container(
-                                  child: const Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                  ),
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  margin: const EdgeInsets.only(right: 10)
-                                ),
-                                widget.isCollapsed ? Text(
-                                  widget.user,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.visible,
-                                ) : const Center()
-                              ],
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15, right: 10),
+                    child: Flex(direction: Axis.vertical, children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [
+                                  Container(
+                                      child: const Icon(
+                                        Icons.person,
+                                        color: Colors.white,
+                                      ),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      margin: const EdgeInsets.only(right: 10)),
+                                  widget.isCollapsed
+                                      ? Text(
+                                          widget.user,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.visible,
+                                        )
+                                      : const Center()
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ]),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: widget.isCollapsed ? IconButton(
-                    onPressed: () {
-                      onClick();
-                    },
-                    icon: const Icon(
-                      Icons.logout,
-                      color: Colors.white,
-                    ),
-                  ) : const Center(),
-                ),
-              ],
-            ),
-          )
+                    ]),
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: widget.isCollapsed
+                        ? IconButton(
+                            onPressed: () {
+                              onClick();
+                            },
+                            icon: const Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Center(),
+                  ),
+                ],
+              ),
+            )
           : Column(
               children: [
                 Expanded(
@@ -170,7 +173,7 @@ class _BottomUserInfoState extends State<BottomUserInfo> {
               onPressed: () {
                 Navigator.of(context).pop();
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
+                    MaterialPageRoute(builder: (context) => LoginPage()));
               },
             ),
           ],

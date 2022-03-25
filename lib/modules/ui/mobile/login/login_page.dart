@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:forca_vendas/modules/external/database/database_connection.dart';
+import 'package:forca_vendas/modules/ui/mobile/login/login_config_authentication.dart';
 import 'package:forca_vendas/modules/ui/mobile/login/login_fields.dart';
 import 'package:forca_vendas/modules/ui/mobile/login/register_fields.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,8 @@ import 'login_fields.dart';
 import 'login_header.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  bool isLogin;
+  LoginPage({Key? key, this.isLogin = true}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -21,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     DatabaseConnection().get();
+    setState(() {
+      isLogin = widget.isLogin;
+    });
     super.initState();
   }
 
@@ -51,7 +56,18 @@ class _LoginPageState extends State<LoginPage> {
                   GestureDetector(
                       onTap: () {
                         setState(() {
-                          isLogin == true ? isLogin = false : isLogin = true;
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return LoginConfigAuthentication();
+                              });
+                          isLogin == true
+                              ? showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return LoginConfigAuthentication();
+                                  })
+                              : isLogin = true;
                         });
                       },
                       child: const Icon(Icons.settings,
