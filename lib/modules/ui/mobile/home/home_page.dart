@@ -7,6 +7,7 @@ import 'package:forca_vendas/modules/ui/mobile/home/home_buttons.dart';
 import 'package:forca_vendas/modules/ui/mobile/home/home_statistics.dart';
 import 'package:forca_vendas/modules/ui/mobile/login/login_fields.dart';
 import 'package:forca_vendas/modules/ui/mobile/sale/sale_page.dart';
+import 'package:forca_vendas/modules/ui/mobile/sale_list_page/sale_list_page.dart';
 import 'package:forca_vendas/modules/ui/mobile/schedule/schedule_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -203,7 +204,17 @@ class _HomePageState extends State<HomePage> {
                                       builder: (context) => const SalePage()),
                                 );
                               },
-                              child: const HomeButtons(text: 'Vendas')),
+                              child: const HomeButtons(text: 'Nova Venda')),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SaleListPage()),
+                                );
+                              },
+                              child: const HomeButtons(text: 'Listar Vendas')),
                         ],
                       ),
                     ],
