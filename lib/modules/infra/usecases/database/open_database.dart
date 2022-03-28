@@ -3,7 +3,8 @@ import 'package:sqflite/sqflite.dart';
 
 class OpenDatabase extends DatabaseScripts {
   Future get(String path) async {
-    var db = await openDatabase(path, version: 1, onCreate: (db, version) {
+    var db =
+        await openDatabase(path, version: 1, onCreate: (db, version) async {
       db.execute(createTableUser);
       db.execute(createTableMunicipality);
       db.execute(createTablePayment);
@@ -18,7 +19,7 @@ class OpenDatabase extends DatabaseScripts {
       db.execute(createTableVendas);
       db.execute(createTableVendasItens);
       db.execute(createTableAgenda);
-      db.execute(createTableVendasLista);
+      await db.execute(createTableVendasLista);
     });
     return db;
   }

@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:forca_vendas/modules/domain/usecases/get_customer_type_id.dart';
 import 'package:forca_vendas/modules/domain/usecases/get_id_status.dart';
 import 'package:forca_vendas/modules/domain/usecases/get_municipality_id.dart';
-import 'package:forca_vendas/modules/domain/usecases/notify.dart'; 
+import 'package:forca_vendas/modules/domain/usecases/notify.dart';
 import 'package:forca_vendas/modules/external/database/database_connection.dart';
 import 'package:forca_vendas/modules/infra/usecases/database/store/post_costumer_db.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CostumerAdd extends StatefulWidget {
-  const CostumerAdd({Key? key}) : super(key: key);
+  final List<dynamic> customerList;
+  const CostumerAdd({Key? key, required this.customerList}) : super(key: key);
 
   @override
   _CostumerAddState createState() => _CostumerAddState();
@@ -39,7 +40,7 @@ class _CostumerAddState extends State<CostumerAdd> {
   List<String> statusDropdown = [];
   List<String> costumerTypeDropdown = [];
   List<String> municipalityDropdown = [];
-  
+
   var statusSelected;
   var idStatusSelected;
   var costumerTypeSelected;
@@ -56,37 +57,52 @@ class _CostumerAddState extends State<CostumerAdd> {
   }
 
   postCostumer() async {
-    if (nomeRazaoRController.text != "" &&
-        nomeRazaoRController.text.isNotEmpty &&
-        apelidoFantasiaRController.text != "" &&
-        apelidoFantasiaRController.text.isNotEmpty &&
-        cpfCnpjRController.text != "" &&
-        cpfCnpjRController.text.isNotEmpty &&
-        rgInscRController.text != "" &&
-        rgInscRController.text.isNotEmpty &&
-        idStatusSelected != null &&idStatusSelected !='' &&
-        idCostumerType != null &&idCostumerType != '' &&
-        idMunicipality != null && idMunicipality != '') {
-      await PostCostumer().post(
-          cpfCnpjRController.text,
-          nomeRazaoRController.text,
-          apelidoFantasiaRController.text,
-          rgInscRController.text,
-          foneRController.text,
-          fone2RController.text,
-          fone3RController.text,
-          cepRController.text,
-          enderecoRController.text,
-          enderecoNumeroRController.text,
-          complementoRController.text,
-          bairroRController.text,
-          idStatusSelected,
-          idCostumerType,
-          idMunicipality,
-          emailRController.text,
-          context);
+    var cnpjAlreadyExists = false;
+    for (int i = 0; i < widget.customerList.length; i++) {
+      if (widget.customerList[i]['cpf_cnpj'] == cpfCnpjRController.text) {
+        cnpjAlreadyExists = true;
+      }
+    }
+    if (cnpjAlreadyExists == false) {
+      if (nomeRazaoRController.text != "" &&
+          nomeRazaoRController.text.isNotEmpty &&
+          apelidoFantasiaRController.text != "" &&
+          apelidoFantasiaRController.text.isNotEmpty &&
+          cpfCnpjRController.text != "" &&
+          cpfCnpjRController.text.isNotEmpty &&
+          rgInscRController.text != "" &&
+          rgInscRController.text.isNotEmpty &&
+          idStatusSelected != null &&
+          idStatusSelected != '' &&
+          idCostumerType != null &&
+          idCostumerType != '' &&
+          idMunicipality != null &&
+          idMunicipality != '') {
+        await PostCostumer().post(
+            cpfCnpjRController.text,
+            nomeRazaoRController.text,
+            apelidoFantasiaRController.text,
+            rgInscRController.text,
+            foneRController.text,
+            fone2RController.text,
+            fone3RController.text,
+            cepRController.text,
+            enderecoRController.text,
+            enderecoNumeroRController.text,
+            complementoRController.text,
+            bairroRController.text,
+            idStatusSelected,
+            idCostumerType,
+            idMunicipality,
+            emailRController.text,
+            context);
+      } else {
+        Notify().pop(context, "Estão faltando informações.", Icons.error,
+            Colors.red, "Erro");
+      }
     } else {
-      Notify().pop(context, "Estão faltando informações.", Icons.error, Colors.red, "Erro");
+      Notify().pop(
+          context, "CPF/CNPJ já existem.", Icons.error, Colors.red, "Erro");
     }
   }
 

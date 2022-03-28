@@ -54,7 +54,9 @@ class _CostumerListState extends State<CostumerList> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CostumerAdd()));
+                            builder: (context) => CostumerAdd(
+                                  customerList: costumerList,
+                                )));
                   });
                 },
                 child: const Icon(Icons.person_add, color: Color(0xff01497c))),
@@ -86,14 +88,14 @@ class _CostumerListState extends State<CostumerList> {
                 color: Colors.transparent,
                 child: costumerListDisplay.isNotEmpty
                     ? Scrollbar(
-                      child: ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: costumerListDisplay.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return CostumerListItem(
-                                items: costumerListDisplay, index: index);
-                          }),
-                    )
+                        child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: costumerListDisplay.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return CostumerListItem(
+                                  items: costumerListDisplay, index: index);
+                            }),
+                      )
                     : loading == false
                         ? Center(
                             child: Text(
@@ -129,14 +131,15 @@ class _CostumerListState extends State<CostumerList> {
           texto = texto.toUpperCase();
           setState(() {
             costumerListDisplay = costumerList.where((cliente) {
-              var costumerName = 
-                  cliente['nome_razao'].toString().toUpperCase();
+              var costumerName = cliente['nome_razao'].toString().toUpperCase();
               var costumerFantasy =
                   cliente['apelido_fantasia'].toString().toUpperCase();
               var costumerID = cliente['id'].toString().toUpperCase();
               var customerCpfCnpj = cliente['cpf_cnpj'].toString();
-              return costumerName.contains(texto) || costumerID.contains(texto) ||
-                  costumerFantasy.contains(texto) || customerCpfCnpj.contains(texto);
+              return costumerName.contains(texto) ||
+                  costumerID.contains(texto) ||
+                  costumerFantasy.contains(texto) ||
+                  customerCpfCnpj.contains(texto);
             }).toList();
           });
         },

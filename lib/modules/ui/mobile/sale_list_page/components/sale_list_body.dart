@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:forca_vendas/modules/domain/entities/sales_list_entity.dart';
 import 'package:forca_vendas/modules/domain/usecases/general_query.dart';
 import 'package:forca_vendas/modules/external/database/database_connection.dart';
 import 'package:sqflite/sqflite.dart';
@@ -23,8 +22,8 @@ class _SaleListBodyState extends State<SaleListBody> {
         .rawQuery('''SELECT * FROM clientes_visitas WHERE data = '';''');
   }
 
-  List<SalesListEntity> salesList = [];
-  List<SalesListEntity> salesListDisplay = [];
+  List<dynamic> salesList = [];
+  List<dynamic> salesListDisplay = [];
 
   @override
   void initState() {
