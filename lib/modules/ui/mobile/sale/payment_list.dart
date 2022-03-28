@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forca_vendas/modules/infra/usecases/database/store/post_local_sale_db.dart';
 import 'package:forca_vendas/modules/infra/usecases/database/store/post_sale_db.dart';
 import 'package:forca_vendas/modules/ui/mobile/sale/payment_method.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,8 +30,7 @@ class PaymentList extends StatefulWidget {
       required this.totalDesconto,
       required this.valorDesconto,
       required this.percentualDesconto,
-      required this.complemento
-      })
+      required this.complemento})
       : super(key: key);
 
   @override
@@ -46,6 +46,19 @@ class _PaymentListState extends State<PaymentList> {
         onTap: () {
           setState(() {
             fPagto = widget.paymentList[widget.index]['id'];
+            PostLocalSaleDataBase().post(
+              context,
+              6,
+              "12-12-2021",
+              "15:20:45",
+              "Cliente Teste",
+              1051,
+              fPagto.toString(),
+              widget.totalPreco,
+              widget.percentualDesconto,
+              widget.totalPreco,
+            );
+
             PostSaleDatabase().post(
                 widget.products,
                 context,
@@ -57,8 +70,7 @@ class _PaymentListState extends State<PaymentList> {
                 widget.totalDesconto,
                 widget.valorDesconto,
                 widget.percentualDesconto,
-                widget.complemento
-                );
+                widget.complemento);
           });
         },
         child: SizedBox(

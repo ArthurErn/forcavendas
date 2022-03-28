@@ -12,7 +12,7 @@ class SaleListPage extends StatefulWidget {
 class _SaleListPageState extends State<SaleListPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80),
         child: SaleListAppBar(),

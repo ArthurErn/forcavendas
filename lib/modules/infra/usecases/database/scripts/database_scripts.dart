@@ -207,3 +207,17 @@ class DatabaseScripts {
     PRIMARY KEY(id)
   );''';
 }
+
+/*
+{
+"id": 0,
+"data_venda": "",
+"hora_venda": "",
+"nome_cliente": "",
+"id_vendedor": 0,
+"nome_fpagto": "",
+"tot_bruto": 0,
+"tot_desc_prc": 0,
+"tot_liquido": 0,
+}
+ */
