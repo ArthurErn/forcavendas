@@ -112,7 +112,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
               ),
               const SizedBox(height: 15),
               Container(
-                height: MediaQuery.of(context).size.height * .745,
+                height: MediaQuery.of(context).size.height * .70,
                 width: MediaQuery.of(context).size.width * .9,
                 decoration: BoxDecoration(
                     boxShadow: [

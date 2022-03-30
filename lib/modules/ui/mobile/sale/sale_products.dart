@@ -80,8 +80,8 @@ class _SaleProductsState extends State<SaleProducts> {
           search == true ? searchBar() : const Center(),
           Container(
             height: search == true
-                ? MediaQuery.of(context).size.height - 144
-                : MediaQuery.of(context).size.height - 89,
+                ? MediaQuery.of(context).size.height - 158
+                : MediaQuery.of(context).size.height - 103,
             color: Colors.transparent,
             child: productListDisplay.isNotEmpty
                 ? Scrollbar(
