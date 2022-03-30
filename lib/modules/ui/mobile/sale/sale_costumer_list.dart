@@ -41,6 +41,7 @@ class _SaleCostumerListState extends State<SaleCostumerList> {
                   builder: (context) => SaleCart(
                         id: widget.items[widget.index]['id_tabela_preco'],
                         idCliente: widget.items[widget.index]['id'],
+                        nomeCliente: widget.items[widget.index]['nome_razao'],
                       )));
         },
         child: Container(

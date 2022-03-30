@@ -11,12 +11,14 @@ class SaleProductsList extends StatefulWidget {
   final int index;
   final int id;
   final int idCliente;
+  final String nomeCliente;
   const SaleProductsList(
       {Key? key,
       required this.items,
       required this.index,
       required this.id,
-      required this.idCliente})
+      required this.idCliente,
+      required this.nomeCliente})
       : super(key: key);
 
   @override
@@ -69,7 +71,8 @@ class _SaleProductsListState extends State<SaleProductsList> {
                           widget.items[widget.index]['produto_status'] ?? "",
                       tabprecosStatus:
                           widget.items[widget.index]['tabprecos_status'] ?? "");
-                  quantity(produtoEntity, widget.idCliente, widget.id);
+                  quantity(produtoEntity, widget.idCliente, widget.id,
+                      widget.nomeCliente);
                 });
               },
               child: SingleChildScrollView(
@@ -193,7 +196,7 @@ class _SaleProductsListState extends State<SaleProductsList> {
         : const Center();
   }
 
-  void quantity(entity, idCliente, tableId) {
+  void quantity(entity, idCliente, tableId, nomeCliente) {
     showGeneralDialog(
         barrierColor: Colors.black.withOpacity(0.5),
         transitionBuilder: (context, a1, a2, widget) {
@@ -300,6 +303,7 @@ class _SaleProductsListState extends State<SaleProductsList> {
                                 builder: (context) => SaleCart(
                                       id: tableId,
                                       idCliente: idCliente,
+                                      nomeCliente: nomeCliente,
                                     )),
                           );
                         },

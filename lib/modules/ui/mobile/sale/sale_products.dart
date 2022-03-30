@@ -11,7 +11,12 @@ List<String> complementoList = [];
 class SaleProducts extends StatefulWidget {
   final int id;
   final int idCliente;
-  const SaleProducts({Key? key, required this.id, required this.idCliente})
+  final String nomeCliente;
+  const SaleProducts(
+      {Key? key,
+      required this.id,
+      required this.idCliente,
+      required this.nomeCliente})
       : super(key: key);
 
   @override
@@ -46,10 +51,10 @@ class _SaleProductsState extends State<SaleProducts> {
                 setState(() {
                   search = !search;
                   if (search == false) {
-                      setState(() {
-                        productListDisplay = productList;
-                      });
-                    }
+                    setState(() {
+                      productListDisplay = productList;
+                    });
+                  }
                 });
               },
               child: Icon(search == true ? Icons.close : Icons.search,
@@ -80,18 +85,21 @@ class _SaleProductsState extends State<SaleProducts> {
             color: Colors.transparent,
             child: productListDisplay.isNotEmpty
                 ? Scrollbar(
-                  child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: productListDisplay.isNotEmpty? productListDisplay.length:1,
-                      itemBuilder: (BuildContext context, int index) {
-                        return SaleProductsList(
-                          index: index,
-                          items: productListDisplay,
-                          id: widget.id,
-                          idCliente: widget.idCliente,
-                        );
-                      }),
-                )
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: productListDisplay.isNotEmpty
+                            ? productListDisplay.length
+                            : 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          return SaleProductsList(
+                            index: index,
+                            items: productListDisplay,
+                            id: widget.id,
+                            idCliente: widget.idCliente,
+                            nomeCliente: widget.nomeCliente,
+                          );
+                        }),
+                  )
                 : loading == false
                     ? Center(
                         child: Text(

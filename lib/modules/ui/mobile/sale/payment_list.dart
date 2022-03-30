@@ -3,6 +3,7 @@ import 'package:forca_vendas/modules/infra/usecases/database/store/post_local_sa
 import 'package:forca_vendas/modules/infra/usecases/database/store/post_sale_db.dart';
 import 'package:forca_vendas/modules/ui/mobile/sale/payment_method.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class PaymentList extends StatefulWidget {
   final List paymentList;
@@ -17,6 +18,7 @@ class PaymentList extends StatefulWidget {
   final dynamic valorDesconto;
   final dynamic percentualDesconto;
   final List complemento;
+  final String nomeCliente;
   const PaymentList(
       {Key? key,
       required this.paymentList,
@@ -30,7 +32,8 @@ class PaymentList extends StatefulWidget {
       required this.totalDesconto,
       required this.valorDesconto,
       required this.percentualDesconto,
-      required this.complemento})
+      required this.complemento,
+      required this.nomeCliente})
       : super(key: key);
 
   @override
@@ -46,17 +49,17 @@ class _PaymentListState extends State<PaymentList> {
         onTap: () {
           setState(() {
             fPagto = widget.paymentList[widget.index]['id'];
+            String fPagtoNome = widget.paymentList[widget.index]['descricao'];
             PostLocalSaleDataBase().post(
               context,
-              6,
-              "12-12-2021",
-              "15:20:45",
-              "Cliente Teste",
+              DateFormat("dd-MM-yyyy").format(DateTime.now()),
+              DateFormat("HH:mm:ss").format(DateTime.now()),
+              widget.nomeCliente,
               1051,
-              fPagto.toString(),
+              fPagtoNome,
               widget.totalPreco,
               widget.percentualDesconto,
-              widget.totalPreco,
+              widget.totalDesconto,
             );
 
             PostSaleDatabase().post(

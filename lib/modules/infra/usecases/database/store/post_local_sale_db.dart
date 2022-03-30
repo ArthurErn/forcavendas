@@ -7,11 +7,10 @@ import 'package:forca_vendas/modules/ui/mobile/schedule/schedule_page.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PostLocalSaleDataBase {
-  Future post(context, id, data_venda, hora_venda, nome_cliente, id_vendedor,
+  Future post(context, data_venda, hora_venda, nome_cliente, id_vendedor,
       nome_fpagto, tot_bruto, tot_desc_prc, tot_liquido) async {
     // var collaboratorID = await GetCollaboratorID().get();
     var jsonData = {
-      "id": id,
       "data_venda": data_venda,
       "hora_venda": hora_venda,
       "nome_cliente": nome_cliente,

@@ -15,6 +15,7 @@ class PaymentMethod extends StatefulWidget {
   final dynamic valorDesconto;
   final dynamic percentualDesconto;
   final List complemento;
+  final String nomeCliente;
   const PaymentMethod(
       {Key? key,
       required this.products,
@@ -25,7 +26,8 @@ class PaymentMethod extends StatefulWidget {
       required this.totalPreco,
       required this.totalDesconto,
       required this.valorDesconto,
-      required this.percentualDesconto})
+      required this.percentualDesconto,
+      required this.nomeCliente})
       : super(key: key);
 
   @override
@@ -138,7 +140,8 @@ class _PaymentMethodState extends State<PaymentMethod> {
                             totalDesconto: widget.totalDesconto,
                             valorDesconto: widget.valorDesconto,
                             percentualDesconto: widget.percentualDesconto,
-                            complemento: widget.complemento);
+                            complemento: widget.complemento,
+                            nomeCliente: widget.nomeCliente);
                       }),
                 ),
               ),

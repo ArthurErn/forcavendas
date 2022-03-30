@@ -7,7 +7,12 @@ import 'package:intl/intl.dart';
 class SaleCart extends StatefulWidget {
   final int id;
   final int idCliente;
-  const SaleCart({Key? key, required this.id, required this.idCliente})
+  final String nomeCliente;
+  const SaleCart(
+      {Key? key,
+      required this.id,
+      required this.idCliente,
+      required this.nomeCliente})
       : super(key: key);
 
   @override
@@ -44,7 +49,9 @@ class _SaleCartState extends State<SaleCart> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => SaleProducts(
-                          id: widget.id, idCliente: widget.idCliente)));
+                          id: widget.id,
+                          idCliente: widget.idCliente,
+                          nomeCliente: widget.nomeCliente)));
             },
             child: Text('+',
                 style: GoogleFonts.quicksand(
@@ -57,35 +64,39 @@ class _SaleCartState extends State<SaleCart> {
         appBar: AppBar(
           actions: [
             produto.isNotEmpty
-                      ?GestureDetector(
-                onTap: () {
-                  if (produto.isNotEmpty) {
-                    discountSale();
-                  }
-                },
-                child: const Icon(Icons.sell, color: Color(0xff01497c))):const Center(),
+                ? GestureDetector(
+                    onTap: () {
+                      if (produto.isNotEmpty) {
+                        discountSale();
+                      }
+                    },
+                    child: const Icon(Icons.sell, color: Color(0xff01497c)))
+                : const Center(),
             const SizedBox(width: 15),
             produto.isNotEmpty
-                      ?GestureDetector(
-                onTap: () {
-                  produto.isNotEmpty
-                      ? Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PaymentMethod(
-                                  products: produto,
-                                  quantity: quantidadeList,
-                                  complemento: complementoList,
-                                  idCliente: widget.idCliente,
-                                  idTabPreco: widget.id,
-                                  totalPreco: _total,
-                                  totalDesconto: totalDesconto,
-                                  valorDesconto: valor,
-                                  percentualDesconto: percentual)),
-                        )
-                      : null;
-                },
-                child: const Icon(Icons.check, color: Color(0xff01497c))):const Center(),
+                ? GestureDetector(
+                    onTap: () {
+                      produto.isNotEmpty
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PaymentMethod(
+                                        products: produto,
+                                        quantity: quantidadeList,
+                                        complemento: complementoList,
+                                        idCliente: widget.idCliente,
+                                        idTabPreco: widget.id,
+                                        totalPreco: _total,
+                                        totalDesconto: totalDesconto,
+                                        valorDesconto: valor,
+                                        percentualDesconto: percentual,
+                                        nomeCliente: widget.nomeCliente,
+                                      )),
+                            )
+                          : null;
+                    },
+                    child: const Icon(Icons.check, color: Color(0xff01497c)))
+                : const Center(),
             const SizedBox(width: 16),
           ],
           leading: GestureDetector(

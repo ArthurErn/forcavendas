@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:forca_vendas/modules/ui/mobile/login/login_page.dart';
+import 'package:sqflite/sqflite.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -9,8 +10,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  deleteDb() async {
+    await deleteDatabase(await getDatabasesPath());
+  }
+
   @override
   void initState() {
+    deleteDb();
     Future.delayed(const Duration(milliseconds: 3500)).then((value) =>
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => LoginPage())));
