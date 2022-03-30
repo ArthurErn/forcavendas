@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:forca_vendas/modules/domain/usecases/get_collaborator_id.dart';
 import 'package:forca_vendas/modules/infra/usecases/database/store/post_local_sale_db.dart';
 import 'package:forca_vendas/modules/infra/usecases/database/store/post_sale_db.dart';
 import 'package:forca_vendas/modules/ui/mobile/sale/payment_method.dart';
@@ -47,7 +48,7 @@ class _PaymentListState extends State<PaymentList> {
       padding: const EdgeInsets.all(8),
       child: GestureDetector(
         onTap: () {
-          setState(() {
+          setState(() async {
             fPagto = widget.paymentList[widget.index]['id'];
             String fPagtoNome = widget.paymentList[widget.index]['descricao'];
             PostLocalSaleDataBase().post(
@@ -55,7 +56,7 @@ class _PaymentListState extends State<PaymentList> {
               DateFormat("dd-MM-yyyy").format(DateTime.now()),
               DateFormat("HH:mm:ss").format(DateTime.now()),
               widget.nomeCliente,
-              1051,
+              await GetCollaboratorID().get(),
               fPagtoNome,
               widget.totalPreco,
               widget.percentualDesconto,
