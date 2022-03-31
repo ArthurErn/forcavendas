@@ -228,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white, borderRadius: BorderRadius.circular(6)),
               child: Center(
                 child: Text(
-                  'Lotus ERP - Força de Vendas \n\nVersão 1.0.0\n\nMódulos: \n\nCadastro e consulta de clientes,\nRegistro de vendas e visitas,\nUpload e sincronização de dados.',
+                  'Lotus ERP - Força de Vendas \n\nVersão 1.0.1\n\nMódulos: \n\nCadastro e consulta de clientes,\nRegistro de vendas e visitas,\nUpload e sincronização de dados.',
                   style: GoogleFonts.quicksand(
                       fontSize: 15,
                       letterSpacing: 1,

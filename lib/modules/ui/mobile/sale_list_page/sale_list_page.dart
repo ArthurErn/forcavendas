@@ -12,10 +12,10 @@ class SaleListPage extends StatefulWidget {
 class _SaleListPageState extends State<SaleListPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Novas Vendas'),
-        backgroundColor: const Color(0xff01497c),
+    return const Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: SaleListAppBar(),
       ),
       body: SaleListBody(),
     );

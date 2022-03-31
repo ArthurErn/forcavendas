@@ -44,6 +44,7 @@ class _SaleCartState extends State<SaleCart> {
       onWillPop: () async => false,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
+            backgroundColor: Color.fromARGB(255, 121, 166, 176),
             onPressed: () {
               Navigator.push(
                   context,
@@ -53,13 +54,12 @@ class _SaleCartState extends State<SaleCart> {
                           idCliente: widget.idCliente,
                           nomeCliente: widget.nomeCliente)));
             },
-            child: Text('+',
-                style: GoogleFonts.quicksand(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: .2,
-                  color: Colors.white,
-                ))),
+            child: const Center(
+              child: Icon(
+                Icons.add,
+                size: 30,
+              ),
+            )),
         backgroundColor: const Color(0xffe0f5f9),
         appBar: AppBar(
           actions: [
