@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:forca_vendas/modules/domain/usecases/general_query.dart';
 import 'package:forca_vendas/modules/external/database/database_connection.dart';
+import 'package:forca_vendas/modules/mobx_controllers/sale_list_controller.dart';
 import 'package:forca_vendas/modules/ui/extensions/string_extension.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sqflite/sqflite.dart';
@@ -69,127 +71,150 @@ class _SaleListBodyState extends State<SaleListBody> {
     //   });
     // });
     getQuery();
-    print('============================');
-    print("${salesList.length}$salesList");
-    print("${salesListDisplay.length}$salesListDisplay");
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     //container do fundo
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      color: const Color.fromARGB(255, 2, 38, 73),
-      child: ListView.builder(
-        itemCount: salesListDisplay.length,
-        itemBuilder: (BuildContext context, index) {
-          //Testar outras opçoes no
-          return GestureDetector(
-            onTap: () {
-              print(salesListDisplay.length);
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 70, 115, 160),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              height: 80,
-              width: 40,
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 50,
-                    child: Center(
-                      child: Text(index.toString(),
-                          style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                            //fontStyle: TextStyle(color: Colors.white),
-                          )),
-                    ),
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          color: const Color.fromARGB(255, 2, 38, 73),
+          child: ListView.builder(
+            itemCount: salesListDisplay.length,
+            itemBuilder: (BuildContext context, index) {
+              //Testar outras opçoes no
+              return GestureDetector(
+                onTap: () {
+                  print(salesListDisplay.length);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 70, 115, 160),
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("${salesListDisplay[index]["nome_cliente"]}",
-                            style: GoogleFonts.quicksand(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              //fontStyle: TextStyle(color: Colors.white),
-                            )),
-                        Text("${salesListDisplay[index]["nome_fpagto"]}",
-                            style: GoogleFonts.quicksand(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              //fontStyle: TextStyle(color: Colors.white),
-                            )),
-                        Text("${salesListDisplay[index]["data_venda"]}",
-                            style: GoogleFonts.quicksand(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              //fontStyle: TextStyle(color: Colors.white),
-                            )),
-                        Text("${salesListDisplay[index]["hora_venda"]}",
-                            style: GoogleFonts.quicksand(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              //fontStyle: TextStyle(color: Colors.white),
-                            )),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 85,
-                    padding: const EdgeInsets.all(8),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("${salesListDisplay[index]["tot_desc_prc"]}%",
+                  height: 80,
+                  width: 40,
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 50,
+                        child: Center(
+                          child: Text(index.toString(),
                               style: GoogleFonts.quicksand(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
+                                fontSize: 15,
                                 //fontStyle: TextStyle(color: Colors.white),
                               )),
-                          AutoSizeText(
-                              salesListDisplay[index]["tot_bruto"]
-                                  .toString()
-                                  .toCurrency(),
-                              maxLines: 1,
-                              style: GoogleFonts.quicksand(
-                                decoration: TextDecoration.lineThrough,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                //fontStyle: TextStyle(color: Colors.white),
-                              )),
-                          AutoSizeText(
-                              salesListDisplay[index]["tot_liquido"]
-                                  .toString()
-                                  .toCurrency(),
-                              maxLines: 1,
-                              minFontSize: 8,
-                              style: GoogleFonts.quicksand(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                //fontStyle: TextStyle(color: Colors.white),
-                              )),
-                        ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("${salesListDisplay[index]["nome_cliente"]}",
+                                style: GoogleFonts.quicksand(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  //fontStyle: TextStyle(color: Colors.white),
+                                )),
+                            Text("${salesListDisplay[index]["nome_fpagto"]}",
+                                style: GoogleFonts.quicksand(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  //fontStyle: TextStyle(color: Colors.white),
+                                )),
+                            Text("${salesListDisplay[index]["data_venda"]}",
+                                style: GoogleFonts.quicksand(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  //fontStyle: TextStyle(color: Colors.white),
+                                )),
+                            Text("${salesListDisplay[index]["hora_venda"]}",
+                                style: GoogleFonts.quicksand(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  //fontStyle: TextStyle(color: Colors.white),
+                                )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 85,
+                        padding: const EdgeInsets.all(8),
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "${salesListDisplay[index]["tot_desc_prc"]}%",
+                                  style: GoogleFonts.quicksand(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    //fontStyle: TextStyle(color: Colors.white),
+                                  )),
+                              AutoSizeText(
+                                  salesListDisplay[index]["tot_bruto"]
+                                      .toString()
+                                      .toCurrency(),
+                                  maxLines: 1,
+                                  style: GoogleFonts.quicksand(
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    //fontStyle: TextStyle(color: Colors.white),
+                                  )),
+                              AutoSizeText(
+                                  salesListDisplay[index]["tot_liquido"]
+                                      .toString()
+                                      .toCurrency(),
+                                  maxLines: 1,
+                                  minFontSize: 8,
+                                  style: GoogleFonts.quicksand(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    //fontStyle: TextStyle(color: Colors.white),
+                                  )),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        Observer(builder: (_) {
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: saleListController.search ? 40 : 0,
+            color: Color.fromARGB(244, 255, 255, 255),
+            child: TextFormField(
+              onChanged: (value) {
+                setState(() {
+                  salesListDisplay = salesList.where((element) {
+                    return element["nome_cliente"]
+                        .toString()
+                        .toUpperCase()
+                        .contains(value.toUpperCase());
+                  }).toList();
+                });
+              },
             ),
           );
-        },
-      ),
+        }),
+      ],
     );
   }
 }
